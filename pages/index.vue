@@ -1,16 +1,20 @@
 <template lang="pug">
   .hoge
-    p hoge
+    map-item
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import MapItem from '~/components/MapItem.vue'
 
 export default {
   components: {
-    Logo,
-    VuetifyLogo
+    MapItem
   }
 }
 </script>
+
+<style>
+.hoge {
+  height: 100%;
+}
+</style>
