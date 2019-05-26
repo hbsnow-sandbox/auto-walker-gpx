@@ -1,14 +1,62 @@
 <template lang="pug">
   .hoge
-    map-item
+    v-form
+      v-container
+        h3 緯度と経度を設定してください。
+
+        v-layout
+          v-flex(xs12 md5)
+            v-text-field(
+              label="緯度"
+              :value="lat"
+              required
+            )
+
+          v-flex(xs12 md5)
+            v-text-field(
+              label="経度"
+              :value="lng"
+              required
+            )
+
+          v-flex(xs12 md2)
+            v-btn(
+              block
+              :loading="loading"
+              :disabled="loading"
+              @click="locate"
+            )
+              v-icon pin_drop
+              | 現在地取得
+
+        .text-xs-center
+          v-btn(outline large to="map" nuxt) 実行
+            v-icon arrow_right
 </template>
 
 <script>
-import MapItem from '~/components/MapItem.vue'
+import { mapActions } from 'vuex'
 
 export default {
-  components: {
-    MapItem
+  layout: 'top',
+  computed: {
+    loading() {
+      return this.$store.state.map.loading
+    },
+    items() {
+      return ['a', 'b']
+    },
+    lat() {
+      return this.$store.state.map.lat
+    },
+    lng() {
+      return this.$store.state.map.lng
+    }
+  },
+  methods: {
+    ...mapActions({
+      locate: 'map/locate'
+    })
   }
 }
 </script>

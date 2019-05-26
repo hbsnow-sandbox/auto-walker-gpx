@@ -9,7 +9,6 @@ import L from 'leaflet'
 export default {
   mounted() {
     const map = L.map('map-item')
-    map.setView([35.681236, 139.767125], 18)
     map.addLayer(
       L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png')
     )
@@ -17,6 +16,8 @@ export default {
     map.locate()
 
     map.on('locationfound', e => {
+      map.setView([e.latlng.lat, e.latlng.lng], 18)
+      L.marker([e.latlng.lat, e.latlng.lng]).addTo(map)
       console.log(e.latlng)
     })
 
@@ -24,7 +25,6 @@ export default {
       console.error(e)
     })
 
-    L.marker([35.6825, 139.752778]).addTo(map)
     let lat
     let lng
     map.on('click', e => {

@@ -8,12 +8,12 @@
           v-flex
             v-chip(disabled)
               v-avatar.blue
-                v-icon border_horizontal
-              | {{ latitude }}
+                b 緯度
+              | {{ this.$store.state.map.lat }}
             v-chip(disabled)
               v-avatar.blue
-                v-icon border_vertical
-              | {{ longitude }}
+                b 経度
+              | {{ this.$store.state.map.lng }}
     v-content
       nuxt
     v-footer(app)
@@ -34,9 +34,7 @@ import configs from '../configs'
 export default {
   data() {
     return {
-      title: configs.title,
-      latitude: '-',
-      longitude: '-'
+      title: configs.title
     }
   }
 }
