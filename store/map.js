@@ -30,8 +30,8 @@ export const actions = {
 
     try {
       const latLng = await getCurrentLocation()
-      commit('setLat', latLng.coords.latitude)
-      commit('setLng', latLng.coords.longitude)
+      commit('setLat', latLng.coords.latitude.toFixed(7))
+      commit('setLng', latLng.coords.longitude.toFixed(7))
     } catch (error) {
       //
     }
