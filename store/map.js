@@ -27,14 +27,15 @@ export const mutations = {
 export const actions = {
   async locate({ commit }, { lat, lng }) {
     commit('setLoading', true)
+
     try {
-      this.locading = true
       const latLng = await getCurrentLocation()
-      console.log(latLng)
-      // commit('setLat', { lat })
-      // commit('setLng', { lng })
+      commit('setLat', latLng.coords.latitude)
+      commit('setLng', latLng.coords.longitude)
     } catch (error) {
       //
     }
+
+    commit('setLoading', false)
   }
 }

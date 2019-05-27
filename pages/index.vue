@@ -43,9 +43,6 @@ export default {
     loading() {
       return this.$store.state.map.loading
     },
-    items() {
-      return ['a', 'b']
-    },
     lat() {
       return this.$store.state.map.lat
     },
