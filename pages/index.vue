@@ -2,7 +2,7 @@
   .hoge
     v-form
       v-container
-        h3 緯度と経度を設定してください。
+        h3 初期位置の緯度と経度を設定してください。
 
         v-layout
           v-flex(xs12 md5)

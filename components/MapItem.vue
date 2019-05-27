@@ -13,17 +13,10 @@ export default {
       L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png')
     )
 
-    map.locate()
+    map.setView([this.$store.state.map.lat, this.$store.state.map.lng], 18)
 
-    map.on('locationfound', e => {
-      map.setView([e.latlng.lat, e.latlng.lng], 18)
-      L.marker([e.latlng.lat, e.latlng.lng]).addTo(map)
-      console.log(e.latlng)
-    })
-
-    map.on('locationerror', e => {
-      console.error(e)
-    })
+    // marker
+    L.marker([this.$store.state.map.lat, this.$store.state.map.lng]).addTo(map)
 
     let lat
     let lng

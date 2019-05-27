@@ -9,11 +9,11 @@
             v-chip(disabled)
               v-avatar.blue
                 b 緯度
-              | {{ this.$store.state.map.lat }}
+              | {{ lat }}
             v-chip(disabled)
               v-avatar.blue
                 b 経度
-              | {{ this.$store.state.map.lng }}
+              | {{ lng }}
     v-content
       nuxt
     v-footer(app)
@@ -35,6 +35,14 @@ export default {
   data() {
     return {
       title: configs.title
+    }
+  },
+  computed: {
+    lat() {
+      return this.$store.state.map.lat
+    },
+    lng() {
+      return this.$store.state.map.lng
     }
   }
 }
