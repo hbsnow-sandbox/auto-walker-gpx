@@ -15,7 +15,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/axios": "^5.5.3",
     "cross-env": "^5.2.0",
     "leaflet": "^1.5.1",
     "nuxt": "^2.4.0",
