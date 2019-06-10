@@ -15,6 +15,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@hbsnow/move-on-coords": "^1.0.0",
     "@nuxtjs/axios": "^5.5.3",
     "cross-env": "^5.2.0",
     "leaflet": "^1.5.1",

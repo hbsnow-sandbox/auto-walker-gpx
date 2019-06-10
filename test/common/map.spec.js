@@ -19,7 +19,24 @@ describe('lerp', () => {
 
 describe('move', () => {
   test('指定距離まで移動したときの座標', () => {
-    expect(move([3, 4], [0, 0], 1)).toEqual([2.4, 3.2])
-    expect(move([0, 0], [3, 4], 1)).toEqual([0.6, 0.8])
+    expect(move([3, 4], [0, 0], 1)).toEqual({
+      diff: -4,
+      coords: [2.4, 3.2]
+    })
+    expect(move([0, 0], [3, 4], 1)).toEqual({
+      diff: -4,
+      coords: [0.6, 0.8]
+    })
+  })
+
+  test('指定距離まで移動したときの座標', () => {
+    expect(move([3, 4], [0, 0], 1)).toEqual({
+      diff: -4,
+      coords: [2.4, 3.2]
+    })
+    expect(move([0, 0], [3, 4], 1)).toEqual({
+      diff: -4,
+      coords: [0.6, 0.8]
+    })
   })
 })

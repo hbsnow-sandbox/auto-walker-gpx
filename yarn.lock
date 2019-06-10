@@ -698,6 +698,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@hbsnow/move-on-coords@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@hbsnow/move-on-coords/-/move-on-coords-1.0.0.tgz#c5755402f8e753d0592eef429dc1d6dbe9ca1782"
+  integrity sha512-gjoXoEwtXuuKNJVcTluia31qdwD1ByveSiEvjy/Bt7NGsO9U9AtjDeH10SqHyazD/klsXzLIupDbrVvxXCZ5Ng==
+
 "@jest/console@^24.7.1":
   version "24.7.1"
   resolved "https://registry.yarnpkg.com/@jest/console/-/console-24.7.1.tgz#32a9e42535a97aedfe037e725bd67e954b459545"
