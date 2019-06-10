@@ -1,3 +1,4 @@
+import { parseLocation } from '@hbsnow/move-on-coords'
 import { getCurrentLocation } from '../common/getCurrentLocation'
 
 export const state = () => ({
@@ -30,8 +31,8 @@ export const actions = {
 
     try {
       const latLng = await getCurrentLocation()
-      commit('setLat', parseFloat(latLng.coords.latitude.toFixed(7)))
-      commit('setLng', parseFloat(latLng.coords.longitude.toFixed(7)))
+      commit('setLat', parseLocation(latLng.coords.latitude, 7))
+      commit('setLng', parseLocation(latLng.coords.longitude, 7))
     } catch (error) {
       //
     }

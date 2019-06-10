@@ -698,10 +698,10 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@hbsnow/move-on-coords@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@hbsnow/move-on-coords/-/move-on-coords-1.0.0.tgz#c5755402f8e753d0592eef429dc1d6dbe9ca1782"
-  integrity sha512-gjoXoEwtXuuKNJVcTluia31qdwD1ByveSiEvjy/Bt7NGsO9U9AtjDeH10SqHyazD/klsXzLIupDbrVvxXCZ5Ng==
+"@hbsnow/move-on-coords@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@hbsnow/move-on-coords/-/move-on-coords-1.0.2.tgz#df958949c825f26656e3d0408726791a28b1ba8c"
+  integrity sha512-abrJlCHi1i8b7tD8WgjYyMbEGVWthNzHhzKVgmX4rm1did3xPMwOO4aW4mjdrTbX0m6taM0lVng1vRQYbvi3Bw==
 
 "@jest/console@^24.7.1":
   version "24.7.1"
