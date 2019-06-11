@@ -39,10 +39,10 @@ export default {
   },
   computed: {
     lat() {
-      return this.$store.state.map.lat
+      return this.$store.state.map.current[0]
     },
     lng() {
-      return this.$store.state.map.lng
+      return this.$store.state.map.current[1]
     }
   }
 }

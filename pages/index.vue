@@ -36,6 +36,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { LOCATE } from '../store/types'
 
 export default {
   layout: 'top',
@@ -44,15 +45,15 @@ export default {
       return this.$store.state.map.loading
     },
     lat() {
-      return this.$store.state.map.lat
+      return this.$store.state.map.current.latitude
     },
     lng() {
-      return this.$store.state.map.lng
+      return this.$store.state.map.current.longitude
     }
   },
   methods: {
     ...mapActions({
-      locate: 'map/locate'
+      locate: `map/${LOCATE}`
     })
   }
 }
