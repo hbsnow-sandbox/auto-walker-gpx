@@ -14,10 +14,19 @@ export default {
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
     )
 
-    map.setView([this.$store.state.map.lat, this.$store.state.map.lng], 18)
+    map.setView(
+      [
+        this.$store.state.map.current.latitude,
+        this.$store.state.map.current.longitude
+      ],
+      18
+    )
 
     // marker
-    L.marker([this.$store.state.map.lat, this.$store.state.map.lng]).addTo(map)
+    L.marker([
+      this.$store.state.map.current.latitude,
+      this.$store.state.map.current.longitude
+    ]).addTo(map)
 
     let lat
     let lng

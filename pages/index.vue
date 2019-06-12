@@ -1,5 +1,5 @@
 <template lang="pug">
-  .hoge
+  .page
     v-form
       v-container
         h3 初期位置の緯度と経度を設定してください。
@@ -8,23 +8,23 @@
           v-flex(xs12 md5)
             v-text-field(
               label="緯度"
-              :value="lat"
+              :value="CURRENT.latitude"
               required
             )
 
           v-flex(xs12 md5)
             v-text-field(
               label="経度"
-              :value="lng"
+              :value="CURRENT.longitude"
               required
             )
 
           v-flex(xs12 md2)
             v-btn(
               block
-              :loading="loading"
-              :disabled="loading"
-              @click="locate"
+              :loading="LOADING"
+              :disabled="LOADING"
+              @click="LOCATE"
             )
               v-icon pin_drop
               | 現在地取得
@@ -35,32 +35,22 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import { LOCATE } from '../store/types'
+import { mapGetters, mapActions } from 'vuex'
+import { LOADING, CURRENT, LOCATE } from '../store/types'
 
 export default {
   layout: 'top',
   computed: {
-    loading() {
-      return this.$store.state.map.loading
-    },
-    lat() {
-      return this.$store.state.map.current.latitude
-    },
-    lng() {
-      return this.$store.state.map.current.longitude
-    }
+    ...mapGetters('map', [LOADING, CURRENT])
   },
   methods: {
-    ...mapActions({
-      locate: `map/${LOCATE}`
-    })
+    ...mapActions('map', [LOCATE])
   }
 }
 </script>
 
 <style>
-.hoge {
+.page {
   height: 100%;
 }
 </style>

@@ -9,11 +9,15 @@
             v-chip(disabled)
               v-avatar.blue
                 b 緯度
-              | {{ lat }}
+              | {{ getCurrent.latitude }}
+              v-icon keyboard_arrow_right
+              | {{ getNext.latitude }}
             v-chip(disabled)
               v-avatar.blue
                 b 経度
-              | {{ lng }}
+              | {{ getCurrent.longitude }}
+              v-icon keyboard_arrow_right
+              | {{ getNext.longitude }}
     v-content
       nuxt
     v-footer(app)
@@ -29,6 +33,8 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
+import { CURRENT, NEXT } from '../store/types'
 import configs from '../configs'
 
 export default {
@@ -38,12 +44,13 @@ export default {
     }
   },
   computed: {
-    lat() {
-      return this.$store.state.map.current[0]
-    },
-    lng() {
-      return this.$store.state.map.current[1]
-    }
+    ...mapGetters('map', {
+      getCurrent: CURRENT,
+      getNext: NEXT
+    })
+  },
+  methods: {
+    ...mapMutations('map', [CURRENT, NEXT])
   }
 }
 </script>
