@@ -3,44 +3,42 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
+import { CURRENT, NEXT, NEXT_LOCATE } from '../store/types'
 
 export default {
+  computed: {
+    ...mapGetters('map', [CURRENT, NEXT])
+  },
   mounted() {
     const map = L.map('map-item')
-    map.addLayer(
-      // L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png')
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
-    )
+    const coords = [this.CURRENT.latitude, this.CURRENT.longitude]
+    const zoom = 18
+    // https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png
+    const tile = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 
-    map.setView(
-      [
-        this.$store.state.map.current.latitude,
-        this.$store.state.map.current.longitude
-      ],
-      18
-    )
+    map.addLayer(L.tileLayer(tile))
+    map.setView(coords, zoom)
 
     // marker
-    L.marker([
-      this.$store.state.map.current.latitude,
-      this.$store.state.map.current.longitude
-    ]).addTo(map)
-
-    let lat
-    let lng
+    L.marker(coords).addTo(map)
     let marker
     map.on('click', e => {
-      lat = e.latlng.lat
-      lng = e.latlng.lng
+      const latitude = e.latlng.lat
+      const longitude = e.latlng.lng
 
-      console.log('lat: ' + lat + ', lng: ' + lng)
+      this.NEXT_LOCATE({ latitude, longitude })
       if (marker) map.removeLayer(marker)
-      marker = L.marker([lat, lng], {
+
+      marker = L.marker([latitude, longitude], {
         draggable: true
       }).addTo(map)
     })
+  },
+  methods: {
+    ...mapActions('map', [NEXT_LOCATE])
   }
 }
 </script>

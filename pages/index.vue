@@ -24,7 +24,7 @@
               block
               :loading="LOADING"
               :disabled="LOADING"
-              @click="LOCATE"
+              @click="CURRENT_LOCATE"
             )
               v-icon pin_drop
               | 現在地取得
@@ -36,7 +36,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { LOADING, CURRENT, LOCATE } from '../store/types'
+import { LOADING, CURRENT, CURRENT_LOCATE } from '../store/types'
 
 export default {
   layout: 'top',
@@ -44,7 +44,7 @@ export default {
     ...mapGetters('map', [LOADING, CURRENT])
   },
   methods: {
-    ...mapActions('map', [LOCATE])
+    ...mapActions('map', [CURRENT_LOCATE])
   }
 }
 </script>

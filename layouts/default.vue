@@ -9,15 +9,17 @@
             v-chip(disabled)
               v-avatar.blue
                 b 緯度
-              | {{ getCurrent.latitude }}
-              v-icon keyboard_arrow_right
-              | {{ getNext.latitude }}
+              | {{ CURRENT.latitude }}
+              span(v-if="NEXT_SELECTED")
+                v-icon keyboard_arrow_right
+                | {{ NEXT.latitude }}
             v-chip(disabled)
               v-avatar.blue
                 b 経度
-              | {{ getCurrent.longitude }}
-              v-icon keyboard_arrow_right
-              | {{ getNext.longitude }}
+              | {{ CURRENT.longitude }}
+              span(v-if="NEXT_SELECTED")
+                v-icon keyboard_arrow_right
+                | {{ NEXT.longitude }}
     v-content
       nuxt
     v-footer(app)
@@ -33,8 +35,8 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
-import { CURRENT, NEXT } from '../store/types'
+import { mapGetters } from 'vuex'
+import { NEXT_SELECTED, CURRENT, NEXT } from '../store/types'
 import configs from '../configs'
 
 export default {
@@ -44,13 +46,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('map', {
-      getCurrent: CURRENT,
-      getNext: NEXT
-    })
-  },
-  methods: {
-    ...mapMutations('map', [CURRENT, NEXT])
+    ...mapGetters('map', [NEXT_SELECTED, CURRENT, NEXT])
   }
 }
 </script>

@@ -1,9 +1,10 @@
 import { parseLocation } from '@hbsnow/move-on-coords'
 import { getCurrentLocation } from '../common/getCurrentLocation'
-import { LOADING, CURRENT, NEXT, LOCATE } from './types'
+import * as types from './types'
 
 export const state = () => ({
   loading: false,
+  nextSelected: false,
   current: {
     latitude: 0,
     longitude: 0
@@ -15,24 +16,27 @@ export const state = () => ({
 })
 
 export const getters = {
-  [LOADING](state) {
+  [types.LOADING](state) {
     return state.loading
   },
-  [CURRENT](state) {
+  [types.NEXT_SELECTED](state) {
+    return state.nextSelected
+  },
+  [types.CURRENT](state) {
     return state.current
   },
-  [NEXT](state) {
+  [types.NEXT](state) {
     return state.next
   }
 }
 
 export const actions = {
-  async [LOCATE]({ commit }) {
-    commit(LOADING, true)
+  async [types.CURRENT_LOCATE]({ commit }) {
+    commit(types.LOADING, true)
 
     try {
       const location = await getCurrentLocation()
-      commit(CURRENT, {
+      commit(types.CURRENT, {
         latitude: parseLocation(location.coords.latitude, 7),
         longitude: parseLocation(location.coords.longitude, 7)
       })
@@ -40,18 +44,29 @@ export const actions = {
       //
     }
 
-    commit(LOADING, false)
+    commit(types.LOADING, false)
+  },
+  [types.NEXT_LOCATE]({ commit }, { coords }) {
+    if (!getters[types.NEXT_SELECTED]) commit(types.NEXT_SELECTED, true)
+
+    commit(types.NEXT, {
+      latitude: parseLocation(coords.latitude, 7),
+      longitude: parseLocation(coords.longitude, 7)
+    })
   }
 }
 
 export const mutations = {
-  [LOADING](state, loading) {
+  [types.LOADING](state, loading) {
     state.loading = loading
   },
-  [CURRENT](state, current) {
+  [types.NEXT_SELECTED](state, nextSelected) {
+    state.nextSelected = nextSelected
+  },
+  [types.CURRENT](state, current) {
     state.current = current
   },
-  [NEXT](state, next) {
+  [types.NEXT](state, next) {
     state.next = next
   }
 }

@@ -1,4 +1,6 @@
 export const LOADING = 'LOADING'
+export const NEXT_SELECTED = 'NEXT_SELECTED'
 export const CURRENT = 'CURRENT'
 export const NEXT = 'NEXT'
-export const LOCATE = 'LOCATE'
+export const CURRENT_LOCATE = 'CURRENT_LOCATE'
+export const NEXT_LOCATE = 'NEXT_LOCATE'
