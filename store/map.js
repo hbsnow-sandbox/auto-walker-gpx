@@ -46,12 +46,12 @@ export const actions = {
 
     commit(types.LOADING, false)
   },
-  [types.NEXT_LOCATE]({ commit }, { coords }) {
-    if (!getters[types.NEXT_SELECTED]) commit(types.NEXT_SELECTED, true)
+  [types.NEXT_LOCATE]({ commit }, { latitude, longitude }) {
+    if (!state.nextSelected) commit(types.NEXT_SELECTED, true)
 
     commit(types.NEXT, {
-      latitude: parseLocation(coords.latitude, 7),
-      longitude: parseLocation(coords.longitude, 7)
+      latitude: parseLocation(latitude, 7),
+      longitude: parseLocation(longitude, 7)
     })
   }
 }
