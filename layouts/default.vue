@@ -12,6 +12,7 @@
               | {{ CURRENT.latitude }}
               span(v-if="NEXT_SELECTED")
                 v-icon keyboard_arrow_right
+              span(v-if="NEXT_SELECTED")
                 | {{ NEXT.latitude }}
             v-chip(disabled)
               v-avatar.blue
@@ -19,7 +20,8 @@
               | {{ CURRENT.longitude }}
               span(v-if="NEXT_SELECTED")
                 v-icon keyboard_arrow_right
-                | {{ NEXT.longitude }}
+              span(v-if="NEXT_SELECTED")
+                |  {{ NEXT.longitude }}
     v-content
       nuxt
     v-footer(app)
