@@ -12,7 +12,8 @@ export const state = () => ({
   next: {
     latitude: 0,
     longitude: 0
-  }
+  },
+  distance: 0
 })
 
 export const getters = {
@@ -27,6 +28,9 @@ export const getters = {
   },
   [types.NEXT](state) {
     return state.next
+  },
+  [types.DISTANCE](state) {
+    return state.distance
   }
 }
 
@@ -68,5 +72,8 @@ export const mutations = {
   },
   [types.NEXT](state, next) {
     state.next = next
+  },
+  [types.DISTANCE](state, distance) {
+    state.distance = distance
   }
 }

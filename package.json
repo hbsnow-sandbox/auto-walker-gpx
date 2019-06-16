@@ -18,6 +18,7 @@
     "@hbsnow/move-on-coords": "^1.0.2",
     "@nuxtjs/axios": "^5.5.3",
     "cross-env": "^5.2.0",
+    "geolib": "^3.0.3",
     "leaflet": "^1.5.1",
     "nuxt": "^2.4.0",
     "vuetify": "^1.5.5",

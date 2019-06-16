@@ -22,6 +22,10 @@
                 v-icon keyboard_arrow_right
               span(v-if="NEXT_SELECTED")
                 |  {{ NEXT.longitude }}
+            v-chip(disabled v-if="NEXT_SELECTED")
+              v-avatar.blue
+                b 距離
+              | {{ DISTANCE }}
     v-content
       nuxt
     v-footer(app)
@@ -38,7 +42,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { NEXT_SELECTED, CURRENT, NEXT } from '../store/types'
+import { NEXT_SELECTED, CURRENT, NEXT, DISTANCE } from '../store/types'
 import configs from '../configs'
 
 export default {
@@ -48,7 +52,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('map', [NEXT_SELECTED, CURRENT, NEXT])
+    ...mapGetters('map', [NEXT_SELECTED, CURRENT, NEXT, DISTANCE])
   }
 }
 </script>

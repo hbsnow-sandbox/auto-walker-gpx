@@ -3,10 +3,11 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { getDistance } from 'geolib'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
-import { CURRENT, NEXT, NEXT_LOCATE } from '../store/types'
+import { CURRENT, NEXT, DISTANCE, NEXT_LOCATE } from '../store/types'
 
 export default {
   computed: {
@@ -32,12 +33,15 @@ export default {
       this.NEXT_LOCATE({ latitude, longitude })
       if (marker) map.removeLayer(marker)
 
+      this.DISTANCE(getDistance(this.CURRENT, { latitude, longitude }))
+
       marker = L.marker([latitude, longitude], {
         draggable: true
       }).addTo(map)
     })
   },
   methods: {
+    ...mapMutations('map', [DISTANCE]),
     ...mapActions('map', [NEXT_LOCATE])
   }
 }
