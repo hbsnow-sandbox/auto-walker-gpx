@@ -1,4 +1,5 @@
 import { parseLocation } from '@hbsnow/move-on-coords'
+import { getDistance } from 'geolib'
 import { getCurrentLocation } from '../common/getCurrentLocation'
 import * as types from './types'
 
@@ -50,13 +51,15 @@ export const actions = {
 
     commit(types.LOADING, false)
   },
-  [types.NEXT_LOCATE]({ commit }, { latitude, longitude }) {
+  [types.NEXT_LOCATE]({ commit, state }, { latitude, longitude }) {
     if (!state.nextSelected) commit(types.NEXT_SELECTED, true)
-
-    commit(types.NEXT, {
+    const coords = {
       latitude: parseLocation(latitude, 7),
       longitude: parseLocation(longitude, 7)
-    })
+    }
+
+    commit(types.NEXT, coords)
+    commit(types.DISTANCE, getDistance(state.current, coords))
   }
 }
 

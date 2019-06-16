@@ -31,13 +31,15 @@
     v-footer(app)
       v-layout(align-center, justify-center)
         v-btn
-          v-icon place
+          v-icon my_location
+        v-btn
+          v-icon pause
         v-btn
           v-icon directions_walk
         v-btn
           v-icon directions_run
         v-btn
-          v-icon local_taxi
+          v-icon directions_car
 </template>
 
 <script>
