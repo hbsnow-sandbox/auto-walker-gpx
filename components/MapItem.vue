@@ -4,48 +4,53 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
-import { CURRENT, NEXT, NEXT_LOCATE } from '../store/types'
+import 'leaflet/dist/leaflet.css'
+import { CURRENT, NEXT, NEXT_LOCATE, INIT_MAP } from '../store/types'
 
 export default {
   computed: {
-    ...mapGetters('map', [CURRENT, NEXT])
+    ...mapGetters('location', [CURRENT, NEXT])
   },
   mounted() {
-    const map = L.map('map-item')
-    const coords = [this.CURRENT.latitude, this.CURRENT.longitude]
-    const zoom = 18
-    // https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png
-    const tile = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-
-    map.addLayer(L.tileLayer(tile))
-    map.setView(coords, zoom)
+    this.INIT_MAP({
+      id: 'map-item',
+      options: {
+        center: [this.CURRENT.latitude, this.CURRENT.longitude],
+        zoom: 18,
+        // layerは別に状態をもたせる
+        // https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png
+        layers: [
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+        ]
+      }
+    })
 
     // marker
-    L.marker(coords).addTo(map)
-    let marker
-    map.on('click', e => {
-      const latitude = e.latlng.lat
-      const longitude = e.latlng.lng
+    // L.marker(coords).addTo(map)
+    // let marker
+    // map.on('click', e => {
+    //   const latitude = e.latlng.lat
+    //   const longitude = e.latlng.lng
 
-      this.NEXT_LOCATE({ latitude, longitude })
-      if (marker) map.removeLayer(marker)
+    //   this.NEXT_LOCATE({ latitude, longitude })
+    //   if (marker) map.removeLayer(marker)
 
-      marker = L.marker([latitude, longitude], {
-        draggable: true
-      }).addTo(map)
+    //   marker = L.marker([latitude, longitude], {
+    //     draggable: true
+    //   }).addTo(map)
 
-      marker.on('moveend', e => {
-        this.NEXT_LOCATE({
-          latitude: e.target.getLatLng().lat,
-          longitude: e.target.getLatLng().lng
-        })
-      })
-    })
+    //   marker.on('moveend', e => {
+    //     this.NEXT_LOCATE({
+    //       latitude: e.target.getLatLng().lat,
+    //       longitude: e.target.getLatLng().lng
+    //     })
+    //   })
+    // })
   },
   methods: {
-    ...mapActions('map', [NEXT_LOCATE])
+    ...mapActions('map', [INIT_MAP]),
+    ...mapActions('location', [NEXT_LOCATE])
   }
 }
 </script>

@@ -54,7 +54,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('map', [NEXT_SELECTED, CURRENT, NEXT, DISTANCE])
+    ...mapGetters('location', [NEXT_SELECTED, CURRENT, NEXT, DISTANCE])
   }
 }
 </script>

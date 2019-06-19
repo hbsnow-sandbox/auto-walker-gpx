@@ -41,10 +41,10 @@ import { LOADING, CURRENT, CURRENT_LOCATE } from '../store/types'
 export default {
   layout: 'top',
   computed: {
-    ...mapGetters('map', [LOADING, CURRENT])
+    ...mapGetters('location', [LOADING, CURRENT])
   },
   methods: {
-    ...mapActions('map', [CURRENT_LOCATE])
+    ...mapActions('location', [CURRENT_LOCATE])
   }
 }
 </script>
