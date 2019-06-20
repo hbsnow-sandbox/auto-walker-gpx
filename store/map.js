@@ -1,26 +1,26 @@
 import L from 'leaflet'
-import * as types from './types'
 
 export const state = () => ({
   maps: {}
 })
 
 export const getters = {
-  [types.MAP](state) {
+  map(state) {
     return state.map
   }
 }
 
 export const actions = {
-  [types.INIT_MAP]({ commit, state }, { id, options }) {
+  initMap({ commit, state }, { id, options }) {
     const map = L.map(id, options)
+    if (options.center) L.marker(options.center).addTo(map)
 
-    commit(types.MAP, map)
+    commit('map', map)
   }
 }
 
 export const mutations = {
-  [types.MAP](state, map) {
+  map(state, map) {
     state.map = map
   }
 }

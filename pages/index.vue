@@ -8,23 +8,23 @@
           v-flex(xs12 md5)
             v-text-field(
               label="緯度"
-              :value="CURRENT.latitude"
+              :value="current.latitude"
               required
             )
 
           v-flex(xs12 md5)
             v-text-field(
               label="経度"
-              :value="CURRENT.longitude"
+              :value="current.longitude"
               required
             )
 
           v-flex(xs12 md2)
             v-btn(
               block
-              :loading="LOADING"
-              :disabled="LOADING"
-              @click="CURRENT_LOCATE"
+              :loading="loading"
+              :disabled="loading"
+              @click="locateCurrent"
             )
               v-icon pin_drop
               | 現在地取得
@@ -36,15 +36,14 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { LOADING, CURRENT, CURRENT_LOCATE } from '../store/types'
 
 export default {
   layout: 'top',
   computed: {
-    ...mapGetters('location', [LOADING, CURRENT])
+    ...mapGetters('location', ['loading', 'current'])
   },
   methods: {
-    ...mapActions('location', [CURRENT_LOCATE])
+    ...mapActions('location', ['locateCurrent'])
   }
 }
 </script>

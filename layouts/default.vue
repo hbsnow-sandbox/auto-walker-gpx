@@ -9,23 +9,23 @@
             v-chip(disabled)
               v-avatar.blue
                 b 緯度
-              | {{ CURRENT.latitude }}
-              span(v-if="NEXT_SELECTED")
+              | {{ current.latitude }}
+              span(v-if="nextSelected")
                 v-icon keyboard_arrow_right
-              span(v-if="NEXT_SELECTED")
-                | {{ NEXT.latitude }}
+              span(v-if="nextSelected")
+                | {{ next.latitude }}
             v-chip(disabled)
               v-avatar.blue
                 b 経度
-              | {{ CURRENT.longitude }}
-              span(v-if="NEXT_SELECTED")
+              | {{ current.longitude }}
+              span(v-if="nextSelected")
                 v-icon keyboard_arrow_right
-              span(v-if="NEXT_SELECTED")
-                |  {{ NEXT.longitude }}
-            v-chip(disabled v-if="NEXT_SELECTED")
+              span(v-if="nextSelected")
+                |  {{ next.longitude }}
+            v-chip(disabled v-if="nextSelected")
               v-avatar.blue
                 b 距離
-              | {{ DISTANCE }}
+              | {{ distance }}
     v-content
       nuxt
     v-footer(app)
@@ -44,7 +44,6 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { NEXT_SELECTED, CURRENT, NEXT, DISTANCE } from '../store/types'
 import configs from '../configs'
 
 export default {
@@ -54,7 +53,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('location', [NEXT_SELECTED, CURRENT, NEXT, DISTANCE])
+    ...mapGetters('location', ['nextSelected', 'current', 'next', 'distance'])
   }
 }
 </script>

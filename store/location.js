@@ -1,7 +1,6 @@
 import { parseLocation } from '@hbsnow/move-on-coords'
 import { getDistance } from 'geolib'
 import { getCurrentLocation } from '../common/getCurrentLocation'
-import * as types from './types'
 
 export const state = () => ({
   loading: false,
@@ -18,30 +17,30 @@ export const state = () => ({
 })
 
 export const getters = {
-  [types.LOADING](state) {
+  loading(state) {
     return state.loading
   },
-  [types.NEXT_SELECTED](state) {
+  nextSelected(state) {
     return state.nextSelected
   },
-  [types.CURRENT](state) {
+  current(state) {
     return state.current
   },
-  [types.NEXT](state) {
+  next(state) {
     return state.next
   },
-  [types.DISTANCE](state) {
+  distance(state) {
     return state.distance
   }
 }
 
 export const actions = {
-  async [types.CURRENT_LOCATE]({ commit }) {
-    commit(types.LOADING, true)
+  async locateCurrent({ commit }) {
+    commit('loading', true)
 
     try {
       const location = await getCurrentLocation()
-      commit(types.CURRENT, {
+      commit('current', {
         latitude: parseLocation(location.coords.latitude, 7),
         longitude: parseLocation(location.coords.longitude, 7)
       })
@@ -49,34 +48,34 @@ export const actions = {
       console.error('error')
     }
 
-    commit(types.LOADING, false)
+    commit('loading', false)
   },
-  [types.NEXT_LOCATE]({ commit, state }, { latitude, longitude }) {
-    if (!state.nextSelected) commit(types.NEXT_SELECTED, true)
+  locateNext({ commit, state }, { latitude, longitude }) {
+    if (!state.nextSelected) commit('nextSelected', true)
     const coords = {
       latitude: parseLocation(latitude, 7),
       longitude: parseLocation(longitude, 7)
     }
 
-    commit(types.NEXT, coords)
-    commit(types.DISTANCE, getDistance(state.current, coords))
+    commit('next', coords)
+    commit('distance', getDistance(state.current, coords))
   }
 }
 
 export const mutations = {
-  [types.LOADING](state, loading) {
+  loading(state, loading) {
     state.loading = loading
   },
-  [types.NEXT_SELECTED](state, nextSelected) {
+  nextSelected(state, nextSelected) {
     state.nextSelected = nextSelected
   },
-  [types.CURRENT](state, current) {
+  current(state, current) {
     state.current = current
   },
-  [types.NEXT](state, next) {
+  next(state, next) {
     state.next = next
   },
-  [types.DISTANCE](state, distance) {
+  distance(state, distance) {
     state.distance = distance
   }
 }

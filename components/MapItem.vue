@@ -5,18 +5,16 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import L from 'leaflet'
-import 'leaflet/dist/leaflet.css'
-import { CURRENT, NEXT, NEXT_LOCATE, INIT_MAP } from '../store/types'
 
 export default {
   computed: {
-    ...mapGetters('location', [CURRENT, NEXT])
+    ...mapGetters('location', ['current', 'next'])
   },
   mounted() {
-    this.INIT_MAP({
+    this.initMap({
       id: 'map-item',
       options: {
-        center: [this.CURRENT.latitude, this.CURRENT.longitude],
+        center: L.latLng(this.current.latitude, this.current.longitude),
         zoom: 18,
         // layerは別に状態をもたせる
         // https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png
@@ -49,8 +47,8 @@ export default {
     // })
   },
   methods: {
-    ...mapActions('map', [INIT_MAP]),
-    ...mapActions('location', [NEXT_LOCATE])
+    ...mapActions('map', ['initMap']),
+    ...mapActions('location', ['locateNext'])
   }
 }
 </script>
