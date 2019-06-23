@@ -19,8 +19,8 @@
     "@nuxtjs/axios": "^5.5.3",
     "cross-env": "^5.2.0",
     "geolib": "^3.0.3",
-    "leaflet": "^1.5.1",
     "nuxt": "^2.4.0",
+    "nuxt-leaflet": "^0.0.19",
     "vuetify": "^1.5.5",
     "vuetify-loader": "^1.2.1"
   },

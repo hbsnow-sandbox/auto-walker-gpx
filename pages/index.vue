@@ -8,14 +8,14 @@
           v-flex(xs12 md5)
             v-text-field(
               label="緯度"
-              :value="current.latitude"
+              :value="currentLatitude"
               required
             )
 
           v-flex(xs12 md5)
             v-text-field(
               label="経度"
-              :value="current.longitude"
+              :value="currentLongitude"
               required
             )
 
@@ -40,7 +40,11 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   layout: 'top',
   computed: {
-    ...mapGetters('location', ['loading', 'current'])
+    ...mapGetters('location', [
+      'loading',
+      'currentLatitude',
+      'currentLongitude'
+    ])
   },
   methods: {
     ...mapActions('location', ['locateCurrent'])

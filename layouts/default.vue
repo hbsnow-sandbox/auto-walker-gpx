@@ -9,19 +9,19 @@
             v-chip(disabled)
               v-avatar.blue
                 b 緯度
-              | {{ current.latitude }}
+              | {{ currentLatitude }}
               span(v-if="nextSelected")
                 v-icon keyboard_arrow_right
               span(v-if="nextSelected")
-                | {{ next.latitude }}
+                | {{ currentLatitude }}
             v-chip(disabled)
               v-avatar.blue
                 b 経度
-              | {{ current.longitude }}
+              | {{ currentLongitude }}
               span(v-if="nextSelected")
                 v-icon keyboard_arrow_right
               span(v-if="nextSelected")
-                |  {{ next.longitude }}
+                |  {{ currentLongitude }}
             v-chip(disabled v-if="nextSelected")
               v-avatar.blue
                 b 距離
@@ -29,7 +29,7 @@
     v-content
       nuxt
     v-footer(app)
-      v-layout(align-center, justify-center)
+      v-layout(align-center justify-center)
         v-btn
           v-icon my_location
         v-btn
@@ -53,7 +53,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('location', ['nextSelected', 'current', 'next', 'distance'])
+    ...mapGetters('location', [
+      'nextSelected',
+      'currentLatitude',
+      'currentLongitude',
+      'next'
+    ])
   }
 }
 </script>

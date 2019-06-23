@@ -45,6 +45,7 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
+    'nuxt-leaflet',
     '@nuxtjs/axios'
   ],
   /*
@@ -71,7 +72,7 @@ export default {
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
-        config.devtool = '#source-map'
+        config.devtool = 'source-map'
 
         config.module.rules.push({
           enforce: 'pre',
