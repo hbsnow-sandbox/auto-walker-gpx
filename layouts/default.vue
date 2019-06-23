@@ -10,19 +10,19 @@
               v-avatar.blue
                 b 緯度
               | {{ currentLatitude }}
-              span(v-if="nextSelected")
+              span(v-if="hasNext")
                 v-icon keyboard_arrow_right
-              span(v-if="nextSelected")
-                | {{ currentLatitude }}
+              span(v-if="hasNext")
+                | {{ nextLatitude }}
             v-chip(disabled)
               v-avatar.blue
                 b 経度
               | {{ currentLongitude }}
-              span(v-if="nextSelected")
+              span(v-if="hasNext")
                 v-icon keyboard_arrow_right
-              span(v-if="nextSelected")
-                |  {{ currentLongitude }}
-            v-chip(disabled v-if="nextSelected")
+              span(v-if="hasNext")
+                |  {{ nextLongitude }}
+            v-chip(disabled v-if="hasNext")
               v-avatar.blue
                 b 距離
               | {{ distance }}
@@ -54,10 +54,12 @@ export default {
   },
   computed: {
     ...mapGetters('location', [
-      'nextSelected',
+      'hasNext',
       'currentLatitude',
       'currentLongitude',
-      'next'
+      'next',
+      'nextLatitude',
+      'nextLongitude'
     ])
   }
 }

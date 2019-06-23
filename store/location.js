@@ -13,7 +13,10 @@ export const getters = {
   current: state => state.current,
   currentLatitude: state => (state.current ? state.current[0] : 0),
   currentLongitude: state => (state.current ? state.current[1] : 0),
-  next: state => state.next
+  next: state => state.next,
+  hasNext: state => !!state.next,
+  nextLatitude: state => (state.next ? state.next[0] : 0),
+  nextLongitude: state => (state.next ? state.next[1] : 0)
 }
 
 export const actions = {
